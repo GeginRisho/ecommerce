@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GR Premium | E-Commerce</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+    <!-- SVG Icons from Feather Icons -->
+    <script src="https://unpkg.com/feather-icons"></script>
+</head>
+<body>
+
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="#" class="logo">GR PREMIUM</a>
+            <div class="nav-actions">
+                <div class="cart-icon" id="cart-toggle">
+                    <i data-feather="shopping-cart"></i>
+                    <span class="cart-count" id="cart-count">0</span>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <h1>Discover Premium Lifestyle</h1>
+        <p>Explore our curated collection of luxury watches, premium apparel, exclusive footwear, and signature fragrances.</p>
+        
+        <div class="categories" id="category-filters">
+            <button class="filter-btn active" data-category="All">All Items</button>
+            <button class="filter-btn" data-category="Watch">Watches</button>
+            <button class="filter-btn" data-category="Shirt">Shirts</button>
+            <button class="filter-btn" data-category="Shoe">Shoes</button>
+            <button class="filter-btn" data-category="Perfume">Perfumes</button>
+        </div>
+    </section>
+
+    <!-- Main Content -->
+    <main class="container">
+        <div class="product-grid" id="product-grid">
+            <!-- Products will be injected via JS -->
+        </div>
+    </main>
+
+    <!-- Cart Overlay & Sidebar -->
+    <div class="cart-overlay" id="cart-overlay"></div>
+    <aside class="cart-sidebar" id="cart-sidebar">
+        <div class="cart-header">
+            <h2 class="cart-title">
+                <i data-feather="shopping-bag"></i> Your Cart
+            </h2>
+            <button class="close-cart" id="close-cart">
+                <i data-feather="x"></i>
+            </button>
+        </div>
+        
+        <div class="cart-items" id="cart-items-container">
+            <!-- Cart items will be injected via JS -->
+            <div class="empty-cart" id="empty-cart-msg">
+                <i data-feather="shopping-cart"></i>
+                <p>Your cart is empty.</p>
+            </div>
+        </div>
+
+        <div class="cart-footer">
+            <div class="cart-total">
+                <span>Total:</span>
+                <span class="text-gold" id="cart-total-amount">₹0</span>
+            </div>
+            <button class="checkout-btn" id="checkout-btn">Proceed to Checkout</button>
+        </div>
+    </aside>
+
+    <!-- Payment Modal -->
+    <div class="payment-modal" id="payment-modal">
+        <div class="payment-header">
+            <h2>Select Payment Method</h2>
+            <p>Complete your premium purchase</p>
+            <p class="text-gold" style="font-size: 1.5rem; font-weight: bold; margin-top: 10px;" id="payment-amount">₹0</p>
+        </div>
+        
+        <div class="payment-options">
+            <button class="payment-btn btn-gpay" onclick="app.processPayment('GPay')">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 14.5v-9l6 4.5-6 4.5z" fill="#fff"/>
+                </svg>
+                Pay with GPay
+            </button>
+            <button class="payment-btn btn-phonepe" onclick="app.processPayment('PhonePe')">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                    <!-- Placeholder generic PhonePe-like icon -->
+                    <circle cx="12" cy="12" r="10" fill="none" stroke="currentColor" stroke-width="2"/>
+                    <path d="M12 8v8M8 12h8" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                </svg>
+                Pay with PhonePe
+            </button>
+        </div>
+        <button class="close-cart" style="margin-top: 20px; width: 100%;" onclick="app.closePaymentModal()">Cancel</button>
+    </div>
+
+    <!-- Success Screen -->
+    <div class="success-screen" id="success-screen">
+        <div class="success-icon">
+            <i data-feather="check"></i>
+        </div>
+        <h2>Payment Successful!</h2>
+        <p>Thank you for shopping with GR Premium.</p>
+        <button class="close-success" onclick="app.resetApp()">Continue Shopping</button>
+    </div>
+
+    <!-- Product Detail Modal -->
+    <div class="product-detail-modal" id="product-detail-modal">
+        <div class="detail-modal-content">
+            <button class="close-detail" id="close-detail" onclick="app.closeProductDetail()">
+                <i data-feather="x"></i>
+            </button>
+            <div class="detail-body" id="detail-body">
+                <!-- Content injected via JS -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Toast Notifications Container -->
+    <div class="toast-container" id="toast-container"></div>
+
+    <script src="js/products.js"></script>
+    <script src="js/app.js"></script>
+    <script>
+        // Initialize Feather icons after the DOM is fully loaded
+        document.addEventListener('DOMContentLoaded', () => {
+            feather.replace();
+        });
+    </script>
+</body>
+</html>
